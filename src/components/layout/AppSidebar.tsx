@@ -1,4 +1,4 @@
-import { Mic, Users, BarChart3, Settings, Phone, BrainCircuit, ChevronLeft } from "lucide-react";
+import { Mic, Users, BarChart3, Settings, Phone, BrainCircuit, ChevronLeft, MessageSquare, CalendarDays, Building2 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
@@ -17,12 +17,15 @@ import {
 
 const mainNav = [
   { title: "Voice Agent", url: "/", icon: Mic },
+  { title: "Conversaciones", url: "/conversations", icon: MessageSquare },
   { title: "CRM Pipeline", url: "/crm", icon: Users },
+  { title: "Citas", url: "/appointments", icon: CalendarDays },
   { title: "Call Logs", url: "/calls", icon: Phone },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
 ];
 
 const settingsNav = [
+  { title: "Mi Negocio", url: "/business", icon: Building2 },
   { title: "Agent Training", url: "/training", icon: BrainCircuit },
   { title: "Settings", url: "/settings", icon: Settings },
 ];

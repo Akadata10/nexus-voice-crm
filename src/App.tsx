@@ -10,6 +10,9 @@ import Auth from "./pages/Auth.tsx";
 import CRM from "./pages/CRM.tsx";
 import CallLogs from "./pages/CallLogs.tsx";
 import Analytics from "./pages/Analytics.tsx";
+import Conversations from "./pages/Conversations.tsx";
+import Appointments from "./pages/Appointments.tsx";
+import BusinessSettings from "./pages/BusinessSettings.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -27,6 +30,9 @@ const App = () => (
             <Route path="/crm" element={<ProtectedRoute><CRM /></ProtectedRoute>} />
             <Route path="/calls" element={<ProtectedRoute><CallLogs /></ProtectedRoute>} />
             <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+            <Route path="/conversations" element={<ProtectedRoute><Conversations /></ProtectedRoute>} />
+            <Route path="/appointments" element={<ProtectedRoute><Appointments /></ProtectedRoute>} />
+            <Route path="/business" element={<ProtectedRoute><BusinessSettings /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
