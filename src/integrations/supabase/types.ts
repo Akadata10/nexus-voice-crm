@@ -46,6 +46,118 @@ export type Database = {
           },
         ]
       }
+      appointments: {
+        Row: {
+          client_name: string
+          client_phone: string | null
+          client_telegram_chat_id: number | null
+          created_at: string | null
+          duration_minutes: number | null
+          id: string
+          notes: string | null
+          reminder_sent: boolean | null
+          scheduled_at: string
+          service: string | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          client_name: string
+          client_phone?: string | null
+          client_telegram_chat_id?: number | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          notes?: string | null
+          reminder_sent?: boolean | null
+          scheduled_at: string
+          service?: string | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          client_name?: string
+          client_phone?: string | null
+          client_telegram_chat_id?: number | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          notes?: string | null
+          reminder_sent?: boolean | null
+          scheduled_at?: string
+          service?: string | null
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      business_config: {
+        Row: {
+          address: string | null
+          appointment_duration_minutes: number | null
+          bot_instructions: string | null
+          business_name: string
+          business_type: string | null
+          created_at: string | null
+          description: string | null
+          phone: string | null
+          services: Json | null
+          timezone: string | null
+          updated_at: string | null
+          user_id: string
+          welcome_message: string | null
+          working_hours: Json | null
+        }
+        Insert: {
+          address?: string | null
+          appointment_duration_minutes?: number | null
+          bot_instructions?: string | null
+          business_name?: string
+          business_type?: string | null
+          created_at?: string | null
+          description?: string | null
+          phone?: string | null
+          services?: Json | null
+          timezone?: string | null
+          updated_at?: string | null
+          user_id: string
+          welcome_message?: string | null
+          working_hours?: Json | null
+        }
+        Update: {
+          address?: string | null
+          appointment_duration_minutes?: number | null
+          bot_instructions?: string | null
+          business_name?: string
+          business_type?: string | null
+          created_at?: string | null
+          description?: string | null
+          phone?: string | null
+          services?: Json | null
+          timezone?: string | null
+          updated_at?: string | null
+          user_id?: string
+          welcome_message?: string | null
+          working_hours?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "business_config_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       call_logs: {
         Row: {
           created_at: string | null
@@ -167,6 +279,127 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      telegram_bot_state: {
+        Row: {
+          id: number
+          update_offset: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          id: number
+          update_offset?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: number
+          update_offset?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "telegram_bot_state_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      telegram_conversations: {
+        Row: {
+          chat_id: number
+          client_name: string | null
+          client_username: string | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          last_message_at: string | null
+          user_id: string
+        }
+        Insert: {
+          chat_id: number
+          client_name?: string | null
+          client_username?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          last_message_at?: string | null
+          user_id: string
+        }
+        Update: {
+          chat_id?: number
+          client_name?: string | null
+          client_username?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          last_message_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "telegram_conversations_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      telegram_messages: {
+        Row: {
+          chat_id: number
+          content: string | null
+          conversation_id: string | null
+          created_at: string | null
+          direction: string
+          id: string
+          raw_update: Json | null
+          update_id: number | null
+          user_id: string
+        }
+        Insert: {
+          chat_id: number
+          content?: string | null
+          conversation_id?: string | null
+          created_at?: string | null
+          direction: string
+          id?: string
+          raw_update?: Json | null
+          update_id?: number | null
+          user_id: string
+        }
+        Update: {
+          chat_id?: number
+          content?: string | null
+          conversation_id?: string | null
+          created_at?: string | null
+          direction?: string
+          id?: string
+          raw_update?: Json | null
+          update_id?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "telegram_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "telegram_conversations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "telegram_messages_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
