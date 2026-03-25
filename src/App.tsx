@@ -7,6 +7,9 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import Index from "./pages/Index.tsx";
 import Auth from "./pages/Auth.tsx";
+import CRM from "./pages/CRM.tsx";
+import CallLogs from "./pages/CallLogs.tsx";
+import Analytics from "./pages/Analytics.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -21,7 +24,9 @@ const App = () => (
           <Routes>
             <Route path="/auth" element={<Auth />} />
             <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/crm" element={<ProtectedRoute><CRM /></ProtectedRoute>} />
+            <Route path="/calls" element={<ProtectedRoute><CallLogs /></ProtectedRoute>} />
+            <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
