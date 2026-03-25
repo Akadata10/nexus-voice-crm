@@ -10,6 +10,9 @@ import Auth from "./pages/Auth.tsx";
 import CRM from "./pages/CRM.tsx";
 import CallLogs from "./pages/CallLogs.tsx";
 import Analytics from "./pages/Analytics.tsx";
+import Conversations from "./pages/Conversations.tsx";
+import Appointments from "./pages/Appointments.tsx";
+import BusinessSettings from "./pages/BusinessSettings.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
